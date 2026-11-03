@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Receipt 20261103-024228</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Receipt 20261103-031910</title><style>
 :root{--bg:#f6f5f1;--card:#fff;--ink:#1c1b19;--mute:#6b6860;--line:#e3e0d8;--ok:#14663a;--okbg:#e2f3ea;
 --bad:#a3261a;--badbg:#fbe6e3;--mid:#8a5a00;--midbg:#fcf0d4;--code:#f1efe9}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141413;--card:#1e1d1b;--ink:#efede6;--mute:#a09c92;
@@ -26,16 +26,17 @@ summary{cursor:pointer;font-weight:600;font-size:14px}.exit{font-family:ui-monos
 .shot.phone img{max-width:240px}.cap{font-size:12px;color:var(--mute);margin-top:4px}
 ul{margin:0;padding-left:20px}li{margin:4px 0}
 </style></head><body><main>
-<div class="card"><div class="top"><div><h1>Receipt</h1><p class="task">Release check for receipts 1.0.0</p></div>
+<div class="card"><div class="top"><div><h1>Receipt</h1><p class="task">Release check for receipts 1.1.0</p></div>
 <div class="stamp VERIFIED">VERIFIED</div></div>
-<div class="meta">2026-11-03T02:42:28 · ~/receipts · 4 criteria · 4 pieces of evidence</div></div>
-<div class="card"><h2>Acceptance criteria</h2><div class="row"><span class="chip verified">verified</span><div><div>1. Test suite passes</div><div class="note">46 tests passed (Python 3.14, Windows 11)</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>2. Version flag works</div><div class="note">prints the version from the single source in receipt.py</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>3. Installer copies the skill and registers the hook</div><div class="note">skill copied, one Stop hook registered, settings.json backed up first</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>4. Repository stays plain: no emoji, long dashes or attribution</div><div class="note">no emoji, no long dashes, no attribution lines in any text file</div></div></div></div>
-<div class="card"><h2>Commands that were run</h2><details><summary>python -m pytest -q (criterion 1) <span class="exit">exit 0 · 22.9s</span></summary><pre>..............................................                           [100%]
-46 passed in 21.92s</pre></details><details><summary>python skill/scripts/receipt.py --version (criterion 2) <span class="exit">exit 0 · 0.3s</span></summary><pre>receipts 1.0.0</pre></details><details><summary>python install.py --target .tmp/skills --settings .tmp/settings.json --hook (criterion 3) <span class="exit">exit 0 · 0.3s</span></summary><pre>Installed the skill to .tmp\skills\receipts
+<div class="meta">2026-11-03T03:19:10 · ~/receipts · 5 criteria · 5 pieces of evidence</div></div>
+<div class="card"><h2>Acceptance criteria</h2><div class="row"><span class="chip verified">verified</span><div><div>1. Test suite passes</div><div class="note">60 tests passed (Python 3.14, Windows 11)</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>2. Version flag works</div><div class="note">prints the version from the single source in receipt.py</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>3. Installer copies the skill and registers the hook</div><div class="note">skill copied, one Stop hook registered, settings.json backed up first</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>4. Plugin packaging follows the documented rules</div><div class="note">marketplace and plugin manifests follow the documented fields, names and paths</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>5. Repository stays plain: no emoji, long dashes or attribution</div><div class="note">no emoji, no long dashes, no attribution lines in any text file</div></div></div></div>
+<div class="card"><h2>Commands that were run</h2><details><summary>python -m pytest -q (criterion 1) <span class="exit">exit 0 · 23.2s</span></summary><pre>............................................................             [100%]
+60 passed in 22.31s</pre></details><details><summary>python plugin/skills/receipts/scripts/receipt.py --version (criterion 2) <span class="exit">exit 0 · 0.3s</span></summary><pre>receipts 1.1.0</pre></details><details><summary>python install.py --target .tmp/skills --settings .tmp/settings.json --hook (criterion 3) <span class="exit">exit 0 · 0.3s</span></summary><pre>Installed the skill to .tmp\skills\receipts
 Stop hook added in .tmp\settings.json (backup: settings.json.receipts.bak)
-Start a new Claude Code session to load it.</pre></details><details><summary>python -m pytest tests/test_style.py -q (criterion 4) <span class="exit">exit 0 · 1.0s</span></summary><pre>...                                                                      [100%]
-3 passed in 0.06s</pre></details></div>
+Start a new Claude Code session to load it.</pre></details><details><summary>python -m pytest tests/test_plugin.py -q (criterion 4) <span class="exit">exit 0 · 0.9s</span></summary><pre>.........                                                                [100%]
+9 passed in 0.03s</pre></details><details><summary>python -m pytest tests/test_style.py -q (criterion 5) <span class="exit">exit 0 · 1.0s</span></summary><pre>...                                                                      [100%]
+3 passed in 0.10s</pre></details></div>
 
-<div class="card"><h2>Not verified</h2><ul><li>Not run on macOS; the CI matrix covers Ubuntu and Windows</li></ul></div>
+<div class="card"><h2>Not verified</h2><ul><li>claude plugin validate was not run (the claude CLI is not installed here); tests/test_plugin.py checks the documented rules instead</li><li>Not run on macOS; the CI matrix covers Ubuntu and Windows</li></ul></div>
 
 </main></body></html>

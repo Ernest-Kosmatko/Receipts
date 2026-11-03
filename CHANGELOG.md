@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0
+
+- Packaged as a Claude Code plugin: `claude plugin marketplace add Ernest-Kosmatko/Receipts`, then `claude plugin install receipts@ernest-kosmatko`
+- `docs/install-with-claude.md`, so Claude can install the skill from a single prompt
+- `install.py --hook-only` registers the Stop hook for people who installed the plugin
+- The skill now lives in `plugin/skills/receipts/`
+- New README with a logo, a flow diagram and a verdict table
+
 ## 1.0.0
 
 First release.

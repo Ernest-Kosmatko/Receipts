@@ -1,0 +1,17 @@
+{
+  "name": "ernest-kosmatko",
+  "description": "Claude Code tools by Ernest Kosmatko",
+  "owner": {
+    "name": "Ernest Kosmatko",
+    "url": "https://github.com/Ernest-Kosmatko"
+  },
+  "plugins": [
+    {
+      "name": "receipts",
+      "source": "./plugin",
+      "description": "Makes Claude prove its work before it says done: real checks, screenshots and a verdict computed from the evidence",
+      "category": "quality",
+      "tags": ["verification", "testing", "screenshots"]
+    }
+  ]
+}

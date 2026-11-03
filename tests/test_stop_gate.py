@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-GATE = Path(__file__).resolve().parent.parent / "skill" / "scripts" / "stop_gate.py"
+GATE = Path(__file__).resolve().parent.parent / "plugin" / "skills" / "receipts" / "scripts" / "stop_gate.py"
 
 
 def user(text):

@@ -1,13 +1,14 @@
 import base64
 import json
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 import pytest
 
-SCRIPT = Path(__file__).resolve().parent.parent / "skill" / "scripts" / "receipt.py"
+SCRIPT = Path(__file__).resolve().parent.parent / "plugin" / "skills" / "receipts" / "scripts" / "receipt.py"
 # 1x1 PNG
 PNG = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=")
 
@@ -173,3 +174,13 @@ def test_version_numbers_agree():
     in_project = re.search(r'^version = "([^"]+)"', (root / "pyproject.toml").read_text(encoding="utf-8"), re.M).group(1)
     in_changelog = re.search(r"^## (\d+\.\d+\.\d+)", (root / "CHANGELOG.md").read_text(encoding="utf-8"), re.M).group(1)
     assert in_script == in_project == in_changelog
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="git is not installed")
+def test_render_can_leave_out_the_git_summary(rc, tmp_path):
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
+    rc.run("init", "--task", "T", "--criteria", "a", check=True)
+    rc.run("render", check=True)
+    assert "<h2>Changes</h2>" in rc.html()
+    rc.run("render", "--no-changes", check=True)
+    assert "<h2>Changes</h2>" not in rc.html()

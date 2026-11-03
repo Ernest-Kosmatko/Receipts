@@ -1,0 +1,14 @@
+{
+  "name": "receipts",
+  "displayName": "Receipts",
+  "version": "1.1.0",
+  "description": "Makes Claude prove its work before it says done: real checks, screenshots and a verdict computed from the evidence",
+  "author": {
+    "name": "Ernest Kosmatko",
+    "url": "https://github.com/Ernest-Kosmatko"
+  },
+  "homepage": "https://github.com/Ernest-Kosmatko/Receipts",
+  "repository": "https://github.com/Ernest-Kosmatko/Receipts",
+  "license": "MIT",
+  "keywords": ["verification", "testing", "screenshots", "quality-assurance", "agent-skills"]
+}

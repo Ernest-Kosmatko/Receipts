@@ -26,7 +26,7 @@ import time
 import webbrowser
 from pathlib import Path
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
@@ -311,7 +311,7 @@ def cmd_render(args):
     pend = [i for i, c in enumerate(data["criteria"], 1) if c["status"] in ("pending", "unverified")]
     if pend:
         nv += f"<li>Criteria without proof: {', '.join(map(str, pend))}</li>"
-    g = git_summary()
+    g = None if args.no_changes else git_summary()
     body = f"""<main>
 <div class="card"><div class="top"><div><h1>Receipt</h1><p class="task">{e(data["task"])}</p></div>
 <div class="stamp {v}">{v}</div></div>
@@ -359,7 +359,8 @@ def main():
     s = sub.add_parser("mark"); s.add_argument("--criterion", type=int, required=True)
     s.add_argument("--status", choices=STATUSES[1:], required=True); s.add_argument("--note", default=""); s.set_defaults(f=cmd_mark)
     s = sub.add_parser("unverified"); s.add_argument("text"); s.set_defaults(f=cmd_unverified)
-    s = sub.add_parser("render"); s.add_argument("--open", action="store_true"); s.set_defaults(f=cmd_render)
+    s = sub.add_parser("render"); s.add_argument("--open", action="store_true")
+    s.add_argument("--no-changes", action="store_true", help="leave the git changes section out"); s.set_defaults(f=cmd_render)
     s = sub.add_parser("check"); s.set_defaults(f=cmd_check)
     s = sub.add_parser("status"); s.set_defaults(f=cmd_check)
     args = ap.parse_args()

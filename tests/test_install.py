@@ -79,3 +79,31 @@ def test_uninstall_cleans_up_an_empty_hooks_section(tmp_path):
     _, settings = install(tmp_path, "--hook", settings_text="{}")
     install(tmp_path, "--uninstall")
     assert json.loads(settings.read_text(encoding="utf-8")) == {}
+
+
+def test_hook_only_registers_the_hook_without_copying_the_skill(tmp_path):
+    r, settings = install(tmp_path, "--hook-only")
+    assert r.returncode == 0, r.stderr
+    assert not (tmp_path / "skills" / "receipts").exists()
+    assert (tmp_path / "receipts-hook" / "stop_gate.py").is_file()
+    stop = hooks(settings)
+    assert len(stop) == 1 and "receipts-hook/stop_gate.py" in stop[0]["hooks"][0]["command"]
+
+
+def test_hook_only_twice_does_not_duplicate_the_hook(tmp_path):
+    install(tmp_path, "--hook-only")
+    _, settings = install(tmp_path, "--hook-only")
+    assert len(hooks(settings)) == 1
+
+
+def test_switching_between_hook_modes_updates_in_place(tmp_path):
+    install(tmp_path, "--hook")
+    _, settings = install(tmp_path, "--hook-only")
+    stop = hooks(settings)
+    assert len(stop) == 1 and "receipts-hook" in stop[0]["hooks"][0]["command"]
+
+
+def test_uninstall_removes_the_hook_script_folder_too(tmp_path):
+    _, settings = install(tmp_path, "--hook-only")
+    install(tmp_path, "--uninstall")
+    assert not (tmp_path / "receipts-hook").exists() and hooks(settings) == []
