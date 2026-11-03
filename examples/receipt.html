@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Receipt 20261103-024228</title><style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1b19;--mute:#6b6860;--line:#e3e0d8;--ok:#14663a;--okbg:#e2f3ea;
+--bad:#a3261a;--badbg:#fbe6e3;--mid:#8a5a00;--midbg:#fcf0d4;--code:#f1efe9}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141413;--card:#1e1d1b;--ink:#efede6;--mute:#a09c92;
+--line:#33312d;--ok:#6fd49b;--okbg:#17331f;--bad:#ff8f84;--badbg:#3a1a17;--mid:#f1c15f;--midbg:#392c10;--code:#171614}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;overflow-wrap:anywhere}
+.top>div,.row>div,.card{min-width:0}
+main{max-width:760px;margin:0 auto;padding:28px 16px 56px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px}
+.top{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+h1{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 6px;font-weight:600}
+.task{font-size:20px;font-weight:650;margin:0;max-width:30em}
+.stamp{border:2px solid currentColor;border-radius:8px;padding:6px 14px;font-weight:800;letter-spacing:.12em;font-size:15px;transform:rotate(-2deg)}
+.VERIFIED{color:var(--ok)}.FAILED{color:var(--bad)}.PARTIAL,.INVALID{color:var(--mid)}
+.meta{color:var(--mute);font-size:13px;margin-top:10px}
+h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:0 0 12px}
+.row{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.row:first-of-type{border-top:0}
+.chip{flex:none;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:99px;text-transform:uppercase}
+.chip.verified{background:var(--okbg);color:var(--ok)}.chip.failed{background:var(--badbg);color:var(--bad)}
+.chip.pending,.chip.unverified{background:var(--midbg);color:var(--mid)}
+.note{color:var(--mute);font-size:13px;margin-top:2px}
+pre{background:var(--code);border-radius:8px;padding:10px 12px;overflow:auto;font:12px/1.45 ui-monospace,Consolas,monospace;margin:8px 0 0;white-space:pre-wrap;word-break:break-word}
+details{border-top:1px solid var(--line);padding:10px 0}details:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:600;font-size:14px}.exit{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--mute)}
+.shots{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start}.shot{max-width:100%}.shot img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block}
+.shot.phone img{max-width:240px}.cap{font-size:12px;color:var(--mute);margin-top:4px}
+ul{margin:0;padding-left:20px}li{margin:4px 0}
+</style></head><body><main>
+<div class="card"><div class="top"><div><h1>Receipt</h1><p class="task">Release check for receipts 1.0.0</p></div>
+<div class="stamp VERIFIED">VERIFIED</div></div>
+<div class="meta">2026-11-03T02:42:28 · ~/receipts · 4 criteria · 4 pieces of evidence</div></div>
+<div class="card"><h2>Acceptance criteria</h2><div class="row"><span class="chip verified">verified</span><div><div>1. Test suite passes</div><div class="note">46 tests passed (Python 3.14, Windows 11)</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>2. Version flag works</div><div class="note">prints the version from the single source in receipt.py</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>3. Installer copies the skill and registers the hook</div><div class="note">skill copied, one Stop hook registered, settings.json backed up first</div></div></div><div class="row"><span class="chip verified">verified</span><div><div>4. Repository stays plain: no emoji, long dashes or attribution</div><div class="note">no emoji, no long dashes, no attribution lines in any text file</div></div></div></div>
+<div class="card"><h2>Commands that were run</h2><details><summary>python -m pytest -q (criterion 1) <span class="exit">exit 0 · 22.9s</span></summary><pre>..............................................                           [100%]
+46 passed in 21.92s</pre></details><details><summary>python skill/scripts/receipt.py --version (criterion 2) <span class="exit">exit 0 · 0.3s</span></summary><pre>receipts 1.0.0</pre></details><details><summary>python install.py --target .tmp/skills --settings .tmp/settings.json --hook (criterion 3) <span class="exit">exit 0 · 0.3s</span></summary><pre>Installed the skill to .tmp\skills\receipts
+Stop hook added in .tmp\settings.json (backup: settings.json.receipts.bak)
+Start a new Claude Code session to load it.</pre></details><details><summary>python -m pytest tests/test_style.py -q (criterion 4) <span class="exit">exit 0 · 1.0s</span></summary><pre>...                                                                      [100%]
+3 passed in 0.06s</pre></details></div>
+
+<div class="card"><h2>Not verified</h2><ul><li>Not run on macOS; the CI matrix covers Ubuntu and Windows</li></ul></div>
+
+</main></body></html>
